@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Incluimos JQuery. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- Aca creamos el CSS de la pagina. Lo pongo aca para que sea mas sencillo -->
+    <!-- bootstrap sugerido por chatgpt para boton de sintoma -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        #center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100px; /* set min-height to 100% + 40px */
+          position: relative;
+
+        }
+        #container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 95%; /* set width to be 80% of parent element */
+          min-width: 400px; /* set a minimum width */
+          min-height: 100px;
+          gap: 1vh;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 0 10px #333;
+          padding: 2vh;
+          position: absolute;
+          top: 20px;
+        }
+
+        h2, h4 {
+          text-align: center;
+          font-family: Arial, sans-serif;
+          justify-content: center;
+          color: #333;
+          position: sticky;
+          margin: 10px;
+        }
+        .button {
+          padding: 1vh 2vh;
+          border: 1px solid #333;
+          border-radius: 5px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #333;
+          background-color: white;
+          transition: all 0.2s ease-in-out;
+          cursor: pointer;
+        }
+        .button:hover {
+          background-color: #333;
+          color: white;
+        }
+        .button:active {
+          transform: scale(0.95);
+        }
+        .button:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px #333;
+        }
+        label {
+          display: none;
+          text-align: center;
+          max-width: 80%;
+          font-weight: 500;
+        }
+        body {
+          background-color: #f2f2f2;
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #333;
+          padding: 2rem;
+        }
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 2rem;
+          text-align: center;
+        }
+
+        .card {
+          background-color: #fff;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          overflow: hidden;
+          margin: 2rem 0;
+        }
+        .card img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+        .card h3 {
+          font-size: 24px;
+          font-weight: bold;
+          margin: 1rem;
+          color: #333;
+        }
+        .card p {
+          font-size: 16px;
+          margin: 1rem;
+          color: #777;
+        }
+        .card .button {
+          padding: 1vh 2vh;
+          border: 1px solid #333;
+          border-radius: 5px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #333;
+          background-color: white;
+          transition: all 0.2s ease-in-out;
+          cursor: pointer;
+        }
+
+        .card .button:hover {
+          background-color: #333;
+          color: white;
+        }
+
+        .card .button:active {
+          transform: scale(0.95);
+        }
+
+        .card .button:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px #333;
+        }
+
+        .card label {
+          display: none;
+          text-align: center;
+          max-width: 80%;
+          font-weight: 500;
+        }
+
+        footer {
+          background-color: #333;
+          color: #fff;
+          padding: 1rem;
+          text-align: center;
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+          width: 300px;
+        }
+
+    </style>
+    <title>Diseasechecker</title>
+</div>
+    </div>
+</head>
+<body>
+    <!-- Contenedor para poder crear un flexblox y que la pagina sea relativamente responsive -->
+    <div id="center">
+        <div id="container">
+            <!-- Titulo -->
+            <h2>Diagnosticador de enfermedades</h2>
+            <!-- Combo box con los cultivos que se pueden cultivar -->
+            <h4>Cultivo a evaluar</h4>
+            <select name="cultivo" id="cultivo">
+                <option value="alfalfa">Alfalfa (Medicago sativa)</option>
+                <option value="arveja">Arveja (Pisum sativum)</option>
+                <option value="garbanzo">Garbanzo (Cicer arietinum)</option>
+                <option value="lechuga"> Lechuga (Lactuca sativa)</option>
+                <option value="lotus_subbiflorus">Lotus subbiflorus</option>
+                <option value="lotus_corniculatus">Lotus corniculatus</option>
+                <option value="maiz">Maíz (Zea Mays)</option>
+                <option value="mani">Mani (Arachis hypogaea)</option>
+                <option value="poroto">Poroto (Phaseolus vulgaris)</option>
+                <option value="poroto_mung">Poroto mung (Vigna radiata)</option>
+                <option value="soja">Soja (Glycine Max)</option>
+                <option value="trebol_blanco">Trebol blanco (Trifolium repens)</option>
+                <option value="trebol_rojo">Trebol rojo (Trifolium pratense)</option>
+            </select>
+            <!-- Distintos tipos de checkbox. No importa que no se usen todos por ahora, lo vamos a seleccionar con el JQuery -->
+            <label id="aditivo_fusarium_lechuga">
+                <input type="checkbox" id="aditivo_fusarium_lechuga_cb" value="Fusarium">
+                ¿Tiene el interior del tallo rosa?
+                    <button class="btn btn-primary" onclick="toggleImage('image1'); displayResult('result1')">Sintoma</button>
+            </label>
+            <label id="aditivo_oidio_lechuga">
+                <input type="checkbox" id="aditivo_oidio_lechuga_cb" value="Oidio">
+                ¿Tiene un polvillo blanco en el enves y el haz de las hojas y manchas amarillas en las mismas?
+                    <button class="btn btn-primary" onclick="toggleImage('image2'); displayResult('result2')">Sintoma</button>
+            </label>
+            <label id="aditivo_mildiu_lechuga">
+                <input type="checkbox" id="aditivo_mildiu_lechuga_cb" value="Mildiu">
+                ¿Tiene un polvillo blanco solo en el enves hojas y decoloracion en las mismas?
+                    <button class="btn btn-primary" onclick="toggleImage('image3'); displayResult('result3')">Sintoma</button>
+            </label>
+            <label id="aditivo_sclerotinia_soja">
+                <input type="checkbox" id="aditivo_sclerotinia_soja_cb" value="Sclerotinia">
+                ¿Tiene lesiones hundidas (cancros) con decoloración castaño rojiza en el cuello de la planta donde se puede observar una masa filamentosa del hongo, que se extiende sobre la superficie del suelo o sobre la que se adhieren pequeños Esclerocios redondos color canela.  ?
+                    <button class="btn btn-primary" onclick="toggleImage('image4'); displayResult('result4')">Sintoma</button>
+            </label>
+            <label id="aditivo_rhizoctonia_soja">
+                <input type="checkbox" id="aditivo_rhizoctonia_soja_cb" value="Rhizoctonia">
+                ¿Tiene cancros secos castaño rojizos en el cuello de la planta que en ocasiones pueden observarse filamentos amarronados en el interior del tallo?
+                    <button class="btn btn-primary" onclick="toggleImage('image5'); displayResult('result5')">Sintoma</button>
+            </label>
+            <label id="aditivo_macrophomina_soja">
+                <input type="checkbox" id="aditivo_macrophomina_soja_cb" value="Podredumbre carbonosa del tallo (Macrophomina phaseoli)">
+                ¿Tiene decoloración castaña rojiza debajo de los cotiledones (oscurecidos en estadios tardios) y observarse microesclerocios negros debajo de la corteza y en la medula?
+                    <button class="btn btn-primary" onclick="toggleImage('image6'); displayResult('result6')">Sintoma</button>
+            </label>
+            <label id="aditivo_pythium_soja">
+                <input type="checkbox" id="aditivo_pythium_soja_cb" value="Phytium y Phytophtora  ">
+                ¿Tiene marchitamiento y muerte de plantas o tallos afectados que presentan una podredumbre húmeda, las hojas se vuelven amarillas y se marchitan?
+                    <button class="btn btn-primary" onclick="toggleImage('image7'); displayResult('result7')">Sintoma</button>
+            </label>
+            <label id="aditivo_fusarium_soja">
+                <input type="checkbox" id="aditivo_fusarium_soja_cb" value="Fusarium">
+                ¿Tiene hojas que presentan clorosis y necrosis internerval, distribuidas aisladamente o en forma de manchones. Las plantas mueren prematuramente y se observa una coloración gris crema en el interior de la raíz?
+                    <button class="btn btn-primary" onclick="toggleImage('image8'); displayResult('result8')">Sintoma</button>
+            </label>
+            <label id="aditivo_diaphorte_soja">
+                <input type="checkbox" id="aditivo_diaphorte_soja_cb" value="Cancro del tallo (Diaphorte phaseolorum fs meridionalis)">
+                ¿Las plantas presentan lesiones necroticas (cancros) bien definidos en el tallo con tonalidades castaño claro en el centro y bordes pronunciados pardo rojizos que se localizan en la zona de inserción del peciolo y se extienden luego sobre el tallo con fructificaciones (picnidios) distribuidas al azar?
+                    <button class="btn btn-primary" onclick="toggleImage('image9'); displayResult('result9')">Sintoma</button>
+            </label>
+            <label id="aditivo_phialophora_soja">
+                <input type="checkbox" id="aditivo_phialophora_soja_cb" value="Podredumbre marrón del tallo (Phialophora gregata)">
+                ¿Las plantas presentan Necrosis internerval con borde angosto de color verde que limita las nervaduras y tallos que presentan coloración rojiza amarronada en la médula, predominando en los nudos?
+                    <button class="btn btn-primary" onclick="toggleImage('image10'); displayResult('result10')">Sintoma</button>
+            </label>
+            </label>
+            <!-- Input del usuario de los kilos de semilla. El step hace que el incrementable sea de a poquito -->
+
+            <!-- Boton para limpiar toda la calculadora y volver a iniciar -->
+            <div class="button" style="border: red 5px solid;" id="limpiar">Limpiar la app</div>
+            <div id="resultado"></div>
+            <div class="button" onclick="displaySelectedOptions()" style="border: green 5px solid;">Pronosticar</button>
+            <p id="selectedOptions"></p>
+            </div>
+
+            <h4>Anexo de imagenes</h4>
+            <div id="myImage">
+              <img id="image1" src="http://ephytia.inra.fr/es/I/7145/Fusarium446b" style="display:none">
+              <img id="image2" src="https://cdn.portalfruticola.com/2019/06/7e470541-nr41194-3.jpg" style="display:none">
+              <img id="image3" src="https://www.seipasa.com/files/images/mildiu_lechuga_tratamientos.jpg" style="display:none">
+              <img id="image4" src="https://thumbs.dreamstime.com/b/sclerotinia-sclerotiorum-slerotinia-podria-de-tallo-y-algunas-esclerocias-sobre-soja-un-pat%C3%B3geno-algo-esclerocia-en-verano-234101038.jpg" style="display:none">
+              <img id="image5" src="https://maissoja.com.br/wp-content/uploads/2020/11/figura-2-12.png" style="display:none">
+              <img id="image6" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/Macrophomina-Phomopsis_03.jpg" style="display:none">
+              <img id="image7" src="https://extension.umn.edu/sites/extension.umn.edu/files/styles/large/public/phytophthora1_600px.jpg?itok=4-UNG9wt" style="display:none">
+              <img id="image8" src="https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Article%20Images/SuddenDeathEsp01a.jpg" style="display:none">
+              <img id="image9" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/soybean-pod-and-stem-blight.jpg?v=1621279268" style="display:none">
+              <img id="image10" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/35_08_HV-SMS-raiz-francisco.jpg" style="display:none">
+              <img id="image11" src="" style="display:none">
+              <img id="image12" src="" style="display:none">
+              <img id="image13" src="" style="display:none">
+              <img id="image14" src="" style="display:none">
+              <img id="image15" src="" style="display:none">
+              <img id="image16" src="" style="display:none">
+        </div>
+    </div>
+
+    </div>
+    <!-- Aca tenemos el codigo de la pagina -->
+    <script>
+        // Seteamos el valor del checkbox a nada, para que quede limpio
+        $("#cultivo").val("").change()
+        // Definimos los labeles de los aditivos
+        const labels = {
+            ["aditivo_sclerotinia_soja"]: "Sclerotinia",
+        }
+
+
+        // Creamos un mapa de Javascript
+        const cultivos = new Map()
+        // Añadimos la entrada por cada cultivo. Esto es programacion "flexible". Podes poner la cantidad de cultivos que quieras y el calculo de cada
+        // semilla puede ser distinto en cada cultivo. Asi mismo, los cultivos pueden tener los aditivos que sean necesarios
+        cultivos.set("soja", {
+            aditivos: [
+                {id: "aditivo_sclerotinia_soja"},
+                {id: "aditivo_rhizoctonia_soja"},
+                {id: "aditivo_macrophomina_soja"},
+                {id: "aditivo_pythium_soja"},
+                {id: "aditivo_fusarium_soja"},
+                {id: "aditivo_diaphorte_soja"},
+                {id: "aditivo_phialophora_soja"},
+                {id: ""},
+            ]
+        })
+        cultivos.set("mani", {
+            aditivos: [
+                {id: "aditivo_pythium_soja"},
+            ]
+        })
+        cultivos.set("lechuga", {
+            aditivos: [
+                {id: "aditivo_fusarium_lechuga"},
+                {id: "aditivo_oidio_lechuga"},
+                {id: "aditivo_mildiu_lechuga"},
+            ]
+        })
+        cultivos.set("maiz", {
+            aditivos: [
+                {id: "aditivo_mildiu_lechuga"},
+            ]
+        })
+        cultivos.set("alfalfa", {
+            aditivos: [
+                {id: "aditivo_mildiu_lechuga"},
+            ]
+        })
+        cultivos.set("garbanzo", {
+            aditivos: [
+                {id: "aditivo_mildiu_lechuga"},
+            ]
+        })
+        cultivos.set("arveja", {
+            aditivos: [
+                {id: "aditivo_tl"},
+            ]
+        })
+        cultivos.set("lotus_corniculatus", {
+            aditivos: [
+                {id: "aditivo_tl"},
+
+            ]
+        })
+        cultivos.set("lotus_subbiflorus", {
+            aditivos: [
+                {id: "aditivo_tl"},
+            ]
+        })
+        cultivos.set("poroto", {
+            aditivos: [
+                {id: "aditivo_tl"},
+
+            ]
+        })
+        cultivos.set("poroto_mung", {
+            aditivos: [
+                {id: "aditivo_tl"},
+            ]
+        })
+        cultivos.set("trebol_blanco", {
+            aditivos: [
+                {id: "aditivo_tl"},
+            ]
+        })
+        cultivos.set("trebol_rojo", {
+            aditivos: [
+                {id: "aditivo_tl"},
+            ]
+        })
+        // Aca vemos cuando el valor del select cambia
+        $("#cultivo").change(function() {
+            // Nos traemos todos los labels y los ocultamos, para que no nos muestre algo que no debe
+            document.querySelectorAll('label').forEach(element => {
+                // Aca los ocultamos
+                $(`#${element.id}`).hide()
+                // Aca de-seleccionamos el checkbox
+                $(`#${element.id}_cb`).prop("checked", false)
+            })
+            // Nos traemos el cultivo que se selecciono
+            let cultivo_seleccionado = $("#cultivo").val()
+            // Checkeamos que el valor no sea nulo
+            if (cultivo_seleccionado != null) {
+                // Buscamos todos los aditivos que tiene y los mostramos para que puedan ser seleccionados
+                cultivos.get(cultivo_seleccionado).aditivos.forEach(element => {
+                    $(`#${element.id}`).show()
+                });
+            }
+        })
+        // Añadimos un event listener al click de calcular, para ver cuando se presiona el boton
+
+        $("#limpiar").on("click", function() {
+            document.querySelectorAll('label').forEach(element => {
+                $(`#${element.id}`).hide()
+                $(`#${element.id}_cb`).prop("checked", false)
+
+            })
+            $("#resultado").html("")
+            $("#cultivo").val("").change()
+            $("#selectedOptions").html("");
+            $("#myImage img").hide();
+
+        })
+        function displaySelectedOptions() {
+           var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+           var selectedOptions = [];
+
+           for (var i = 0; i < checkboxes.length; i++) {
+             if (checkboxes[i].checked) {
+               selectedOptions.push(checkboxes[i].value);
+             }
+           }
+
+           var text = selectedOptions.length > 1 ? "Sus enfermedades son: " : "Su enfermedad es: ";
+           document.getElementById("selectedOptions").innerHTML = text + selectedOptions.join(", ");
+        }
+
+        function displayImage(imageId) {
+          var images = document.querySelectorAll("#myImage img");
+          for (var i = 0; i < images.length; i++) {
+            images[i].style.display = "none";
+          }
+          document.getElementById(imageId).style.display = "block";
+        }
+        function toggleImage(imageId) {
+          var image = document.getElementById(imageId);
+          if (image.style.display === "block") {
+            image.style.display = "none";
+          } else {
+            var allImages = document.querySelectorAll("img");
+            for (var i = 0; i < allImages.length; i++) {
+              allImages[i].style.display = "none";
+            }
+            image.style.display = "block";
+          }
+        }
+    </script>
+    <br><br>
+    <div id="myImage">
+
+    <br><br>
+</body>
+</html>
