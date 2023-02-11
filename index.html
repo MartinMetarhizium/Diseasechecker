@@ -185,9 +185,10 @@
                 <option value="trebol_rojo">Trebol rojo (Trifolium pratense)</option>
             </select>
             <!-- Distintos tipos de checkbox. No importa que no se usen todos por ahora, lo vamos a seleccionar con el JQuery -->
+            <!-- Lechuga -->
             <label id="aditivo_fusarium_lechuga">
                 <input type="checkbox" id="aditivo_fusarium_lechuga_cb" value="Fusarium">
-                ¿Tiene el interior del tallo rosa?
+                ¿Tiene el interior del tallo rosado?
                     <button class="btn btn-primary" onclick="toggleImage('image1'); displayResult('result1')">Sintoma</button>
             </label>
             <label id="aditivo_oidio_lechuga">
@@ -200,9 +201,41 @@
                 ¿Tiene un polvillo blanco solo en el enves hojas y decoloracion en las mismas?
                     <button class="btn btn-primary" onclick="toggleImage('image3'); displayResult('result3')">Sintoma</button>
             </label>
+            <label id="aditivo_alternaria_lechuga">
+                <input type="checkbox" id="aditivo_alternaria_lechuga_cb" value="Alternaria">
+                ¿Tiene manchas oscuras y redondeadas con círculos concéntricos en las hojas que aparecen primero en las hojas inferiores de la planta y luego se extienden?
+                    <button class="btn btn-primary" onclick="toggleImage('image14'); displayResult('result14')">Sintoma</button>
+            </label>
+            <label id="aditivo_sclerotinia_lechuga">
+                <input type="checkbox" id="aditivo_sclerotinia_lechuga_cb" value="Sclerotinia">
+                ¿Se presenta en un principio en el cuello de la planta y se va extendiendo por el resto de la planta, que termina por pudrirse puediendo observarse una masa blanca algodonosa y unos corpúsculos negros en las hojas de lechuga?
+                    <button class="btn btn-primary" onclick="toggleImage('image15'); displayResult('result15')">Sintoma</button>
+            </label>
+
+            <label id="aditivo_botrytis_lechuga">
+                <input type="checkbox" id="aditivo_botrytis_lechuga_cb" value="Botrytis">
+                ¿Se presenta necrosis y el reblandecimiento de aquellos tejidos a los que ha infectado que luego se cubre de un moho difuso de color gris blanquecino ?
+                    <button class="btn btn-primary" onclick="toggleImage('image16'); displayResult('result16')">Sintoma</button>
+            </label>
+            <label id="aditivo_antracnosis_lechuga">
+                <input type="checkbox" id="aditivo_antracnosis_lechuga_cb" value="Antracnosis (Microdochium panattoniana)">
+                ¿Tiene sobre las hojas aparecen manchas amarillentas con el margen rojizo o necrótico el cual se va expandiendo hacia el interior, necrosando la mancha, que se convierte en un agujero?
+                    <button class="btn btn-primary" onclick="toggleImage('image17'); displayResult('result17')">Sintoma</button>
+            </label>
+            <label id="aditivo_septoria_lechuga">
+                <input type="checkbox" id="aditivo_septoria_lechuga_cb" value="Septoriosis (Septoria lactucae)">
+                ¿Tiene manchas pequeñas e irregulares sobre la parte inferior de las hojas de la lechuga que luego pueden llegar a ser necróticas?
+                    <button class="btn btn-primary" onclick="toggleImage('image18'); displayResult('result18')">Sintoma</button>
+            </label>
+            <label id="aditivo_mosaico_lechuga">
+                <input type="checkbox" id="aditivo_mosaico_lechuga_cb" value="Virus del mosaico">
+                ¿En las plantas jóvenes aparecen clareos de las nerviaciones en las hojas, así como deformación del limbo y algunos puntos necróticos?
+                    <button class="btn btn-primary" onclick="toggleImage('image19'); displayResult('result19')">Sintoma</button>
+            </label>
+            <!-- soja -->
             <label id="aditivo_sclerotinia_soja">
                 <input type="checkbox" id="aditivo_sclerotinia_soja_cb" value="Sclerotinia">
-                ¿Tiene lesiones hundidas (cancros) con decoloración castaño rojiza en el cuello de la planta donde se puede observar una masa filamentosa del hongo, que se extiende sobre la superficie del suelo o sobre la que se adhieren pequeños Esclerocios redondos color canela.  ?
+                ¿Tiene lesiones hundidas (cancros) con decoloración castaño rojiza en el cuello de la planta donde se puede observar una masa filamentosa del hongo, que se extiende sobre la superficie del suelo o sobre la que se adhieren pequeños Esclerocios redondos color canela?
                     <button class="btn btn-primary" onclick="toggleImage('image4'); displayResult('result4')">Sintoma</button>
             </label>
             <label id="aditivo_rhizoctonia_soja">
@@ -235,6 +268,21 @@
                 ¿Las plantas presentan Necrosis internerval con borde angosto de color verde que limita las nervaduras y tallos que presentan coloración rojiza amarronada en la médula, predominando en los nudos?
                     <button class="btn btn-primary" onclick="toggleImage('image10'); displayResult('result10')">Sintoma</button>
             </label>
+            <label id="aditivo_septoria_soja">
+                <input type="checkbox" id="aditivo_septoria_soja_cb" value="Septoria glycines">
+                ¿Las plantas presentan defoliación prematura durante el llenado de grano con hojas que presentan manchas de tamaño variable, de color castaño rojizo, que pueden confluir provocando amarilleo y secado prematuro?
+                    <button class="btn btn-primary" onclick="toggleImage('image11'); displayResult('result11')">Sintoma</button>
+            </label>
+            <label id="aditivo_cercospora_soja">
+                <input type="checkbox" id="aditivo_cercospora_soja_cb" value="Cercospora kikuchii">
+                ¿Las hojas presentan manchas angulares castaño rojizo y pueden caer que se caen también afectando a tallos y pecíolos, donde a la madurez se observan manchas en forma de parches grisáceos y semillas que presentan una coloración púrpura típica?
+                    <button class="btn btn-primary" onclick="toggleImage('image12'); displayResult('result12')">Sintoma</button>
+            </label>
+            <label id="aditivo_colletotrichum_soja">
+                <input type="checkbox" id="aditivo_colletotrichum_soja_cb" value="Antracnosis (Colletotrichum spp.)">
+                ¿A la madurez tallo y vainas presentan áreas oscuras de tamaño variables, donde se observa las fructificaciones del hongo que se muestran como puntuaciones oscuras provistas de pelos, que pueden ser visibles con una lupa de mano?
+                    <button class="btn btn-primary" onclick="toggleImage('image13'); displayResult('result13')">Sintoma</button>
+            </label>
             </label>
             <!-- Input del usuario de los kilos de semilla. El step hace que el incrementable sea de a poquito -->
 
@@ -257,12 +305,21 @@
               <img id="image8" src="https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Article%20Images/SuddenDeathEsp01a.jpg" style="display:none">
               <img id="image9" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/soybean-pod-and-stem-blight.jpg?v=1621279268" style="display:none">
               <img id="image10" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/35_08_HV-SMS-raiz-francisco.jpg" style="display:none">
-              <img id="image11" src="" style="display:none">
-              <img id="image12" src="" style="display:none">
-              <img id="image13" src="" style="display:none">
-              <img id="image14" src="" style="display:none">
-              <img id="image15" src="" style="display:none">
-              <img id="image16" src="" style="display:none">
+              <img id="image11" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/02-sautua.jpg" style="display:none">
+              <img id="image12" src="https://summit-agro.com/ar/es/wp-content/uploads/2021/12/Mancha-purpura-de-la-semilla-Tizon-de-la-hoja-Cercospora-kikuchii.jpg" style="display:none">
+              <img id="image13" src="https://herbariofitopatologia.agro.uba.ar/wp-content/uploads/2016/03/Antracnose_Camaqu%C3%A3_24fev2011_13.jpg" style="display:none">
+              <img id="image14" src="https://www.ne-val.com/wp-content/uploads/2018/10/ALTERNARIA-LECHUGA.jpg" style="display:none">
+              <img id="image15" src="https://blog.syngenta.es/wp-content/uploads/2020/02/Escerotinia-en-lechuga-como-prevenirla-1024x683.jpg" style="display:none">
+              <img id="image16" src="https://cdn.portalfruticola.com/2022/07/botrytislettuce-scaled.jpg" style="display:none">
+              <img id="image17" src="http://ephytia.inra.fr/es/Images/view/24376" style="display:none">
+              <img id="image18" src="https://ephytia.inra.fr/es/IC/7164/Septoria150" style="display:none">
+              <img id="image19" src="http://ephytia.inra.fr/es/Images/view/24404" style="display:none">
+              <img id="image20" src="" style="display:none">
+              <img id="image21" src="" style="display:none">
+              <img id="image22" src="" style="display:none">
+              <img id="image23" src="" style="display:none">
+              <img id="image24" src="" style="display:none">
+
         </div>
     </div>
 
@@ -290,6 +347,9 @@
                 {id: "aditivo_fusarium_soja"},
                 {id: "aditivo_diaphorte_soja"},
                 {id: "aditivo_phialophora_soja"},
+                {id: "aditivo_septoria_soja"},
+                {id: "aditivo_cercospora_soja"},
+                {id: "aditivo_colletotrichum_soja"},
                 {id: ""},
             ]
         })
@@ -303,6 +363,12 @@
                 {id: "aditivo_fusarium_lechuga"},
                 {id: "aditivo_oidio_lechuga"},
                 {id: "aditivo_mildiu_lechuga"},
+                {id: "aditivo_alternaria_lechuga"},
+                {id: "aditivo_sclerotinia_lechuga"},
+                {id: "aditivo_botrytis_lechuga"},
+                {id: "aditivo_antracnosis_lechuga"},
+                {id: "aditivo_septoria_lechuga"},
+                {id: "aditivo_mosaico_lechuga"},
             ]
         })
         cultivos.set("maiz", {
@@ -415,7 +481,7 @@
           var image = document.getElementById(imageId);
           if (image.style.display === "block") {
             image.style.display = "none";
-          } 
+          }
           else {
             var allImages = document.querySelectorAll("img");
             for (var i = 0; i < allImages.length; i++) {
@@ -427,6 +493,7 @@
     </script>
     <br><br>
     <div id="myImage">
+
     <br><br>
 </body>
 </html>
